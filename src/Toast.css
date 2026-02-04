@@ -1,0 +1,85 @@
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.3s ease-out;
+  cursor: pointer;
+  z-index: 10000;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-success {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(22, 163, 74, 0.95));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toast-error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toast-info {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toast-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}

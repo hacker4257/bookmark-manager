@@ -1,0 +1,53 @@
+/* 深色主题额外样式 */
+
+[data-theme="dark"] .add-form h2,
+[data-theme="dark"] .reminder-section h3,
+[data-theme="dark"] .form-group label,
+[data-theme="dark"] .bookmark-header h3,
+[data-theme="dark"] .bookmark-url,
+[data-theme="dark"] .notes,
+[data-theme="dark"] .reminder-info {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .add-form input,
+[data-theme="dark"] .add-form textarea,
+[data-theme="dark"] .add-form select,
+[data-theme="dark"] .search-bar input {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--input-border);
+}
+
+[data-theme="dark"] .reminder-config {
+  background: rgba(51, 65, 85, 0.5);
+  border-color: var(--input-border);
+}
+
+[data-theme="dark"] .bookmark-card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .category-tag,
+[data-theme="dark"] .tag {
+  background: rgba(102, 126, 234, 0.2);
+  color: #a5b4fc;
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .empty-message {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .weekday-btn {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--input-border);
+}
+
+[data-theme="dark"] .weekday-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+}

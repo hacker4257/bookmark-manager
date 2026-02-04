@@ -1,0 +1,61 @@
+/* 文件夹视图样式 */
+
+.folder-group {
+  margin-bottom: 40px;
+}
+
+.folder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.folder-header h2 {
+  margin: 0;
+  font-size: 1.8em;
+  color: var(--text-primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-count {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.folder-bookmarks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .folder-bookmarks {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .folder-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .folder-header h2 {
+    font-size: 1.5em;
+  }
+}
