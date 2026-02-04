@@ -188,10 +188,11 @@ function App() {
 
   const handleDeleteBookmark = async (id: number) => {
     if (!confirm("确定要删除这个书签吗？")) return;
+
     try {
       await bookmarkApi.deleteBookmark(id);
+      await loadBookmarks();
       setToast({ message: "书签已删除", type: "success" });
-      loadBookmarks();
     } catch (error) {
       setToast({ message: "删除失败：" + String(error), type: "error" });
     }
