@@ -1,0 +1,96 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-22.04, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install frontend dependencies
+        run: npm install
+
+      - name: Build the app
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Bookmark Manager ${{ github.ref_name }}'
+          releaseBody: |
+            ## ✨ 功能特性
+
+            ### 核心功能
+            - ✅ 完整的书签 CRUD 操作
+            - 🔍 智能搜索功能
+            - 📁 分类和标签管理
+            - 📊 网格视图和文件夹视图切换
+
+            ### 提醒功能
+            - ⏰ 多种提醒频率（每日、每周、自定义间隔、一次性）
+            - 🔔 系统通知
+            - 📅 灵活的时间设置
+
+            ### 数据管理
+            - 📥 导入浏览器书签（HTML格式）
+            - 📤 导出书签（HTML格式）
+            - 💾 本地SQLite数据库存储
+
+            ### 界面特性
+            - 🎨 现代化渐变设计
+            - 🌙 深色/浅色主题切换
+            - 🖼️ 自动获取网站图标
+            - 💫 流畅动画效果
+            - 📱 响应式布局
+
+            ### 快捷键支持
+            - `Ctrl+N`: 新建书签
+            - `Ctrl+F`: 搜索
+            - `Ctrl+E`: 导出
+            - `Ctrl+I`: 导入
+            - `Ctrl+T`: 切换主题
+            - `Esc`: 取消/关闭
+            - `?`: 显示帮助
+
+            ### 统计功能
+            - 👁️ 访问次数统计
+            - 📅 最近访问时间记录
+
+            ---
+
+            查看完整文档：[README.md](https://github.com/${{ github.repository }})
+          releaseDraft: false
+          prerelease: false
